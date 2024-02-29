@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.poFile org.eventb.core.poStamp="0">
+    <org.eventb.core.poPredicateSet name="CTXHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="Mode" org.eventb.core.type="ℙ(Mode)"/>
+        <org.eventb.core.poIdentifier name="VentilationOff" org.eventb.core.type="Mode"/>
+        <org.eventb.core.poIdentifier name="StartUp" org.eventb.core.type="Mode"/>
+        <org.eventb.core.poIdentifier name="PCV" org.eventb.core.type="Mode"/>
+        <org.eventb.core.poIdentifier name="SelfTest" org.eventb.core.type="Mode"/>
+        <org.eventb.core.poIdentifier name="PSV" org.eventb.core.type="Mode"/>
+        <org.eventb.core.poIdentifier name="ModeDiGraph" org.eventb.core.type="ℙ(Mode×Mode)"/>
+        <org.eventb.core.poIdentifier name="Failsafe" org.eventb.core.type="Mode"/>
+        <org.eventb.core.poIdentifier name="PoweredOff" org.eventb.core.type="Mode"/>
+        <org.eventb.core.poPredicate name="VentilationOfg" org.eventb.core.predicate="StartUp∈Mode" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#0"/>
+        <org.eventb.core.poPredicate name="VentilationOfh" org.eventb.core.predicate="SelfTest∈Mode" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#1"/>
+        <org.eventb.core.poPredicate name="VentilationOfi" org.eventb.core.predicate="VentilationOff∈Mode" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#2"/>
+        <org.eventb.core.poPredicate name="VentilationOfj" org.eventb.core.predicate="PCV∈Mode" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#3"/>
+        <org.eventb.core.poPredicate name="VentilationOfk" org.eventb.core.predicate="PSV∈Mode" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#4"/>
+        <org.eventb.core.poPredicate name="VentilationOfl" org.eventb.core.predicate="Failsafe∈Mode" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#5"/>
+        <org.eventb.core.poPredicate name="VentilationOfm" org.eventb.core.predicate="PoweredOff∈Mode" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#6"/>
+        <org.eventb.core.poPredicate name="VentilationOfn" org.eventb.core.predicate="partition(Mode,{StartUp},{SelfTest},{VentilationOff},{PCV},{PSV},{Failsafe},{PoweredOff})" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#."/>
+        <org.eventb.core.poPredicate name="VentilationOfo" org.eventb.core.predicate="finite(Mode)" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#_yV1GwLn6Ee6oroLvWPSQOw"/>
+        <org.eventb.core.poPredicate name="VentilationOfp" org.eventb.core.predicate="partition(ModeDiGraph,{PoweredOff ↦ StartUp},{StartUp ↦ SelfTest},{SelfTest ↦ VentilationOff},{VentilationOff ↦ PSV},{VentilationOff ↦ PCV},{PSV ↦ PCV},{PCV ↦ PSV},{PSV ↦ VentilationOff},{PCV ↦ VentilationOff},{x⦂Mode,y⦂Mode·y=Failsafe∧x≠PoweredOff∧x≠Failsafe ∣ x ↦ y},{x⦂Mode,y⦂Mode·y=PoweredOff∧x≠PoweredOff ∣ x ↦ y})" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#_bnMBEM_yEe6Jw8jFMIYMcg"/>
+        <org.eventb.core.poPredicate name="VentilationOfq" org.eventb.core.predicate="ModeDiGraph∈Mode  Mode" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#_EviFIM_4Ee6Jw8jFMIYMcg"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="mode" org.eventb.core.type="Mode"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTctx02" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="mode'" org.eventb.core.type="Mode"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPctx02" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#EVTIDENTctx02" org.eventb.core.poStamp="0"/>
+    <org.eventb.core.poPredicateSet name="EVTIDENTctx03" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="mode'" org.eventb.core.type="Mode"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPctx03" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#EVTIDENTctx03" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode=PoweredOff" org.eventb.core.source="/MechanicalLungVentilator/mac00.bum|org.eventb.core.machineFile#mac00|org.eventb.core.event#_q-axcLFAEe6d68-PSM48Ug|org.eventb.core.guard#_51o_AcmXEe6oR9IHssYpQA"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTctx04" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="mode'" org.eventb.core.type="Mode"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPctx04" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#EVTIDENTctx04" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode=StartUp" org.eventb.core.source="/MechanicalLungVentilator/mac00.bum|org.eventb.core.machineFile#mac00|org.eventb.core.event#_3bLkkMAcEe6MNIXNEBRfjA|org.eventb.core.guard#_51o_A8mXEe6oR9IHssYpQA"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTctx05" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="mode'" org.eventb.core.type="Mode"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPctx05" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#EVTIDENTctx05" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode=SelfTest" org.eventb.core.source="/MechanicalLungVentilator/mac00.bum|org.eventb.core.machineFile#mac00|org.eventb.core.event#_SMLP8sAfEe6MNIXNEBRfjA|org.eventb.core.guard#_bu70scmYEe6oR9IHssYpQA"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTctx06" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="mode'" org.eventb.core.type="Mode"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPctx06" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#EVTIDENTctx06" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode=SelfTest" org.eventb.core.source="/MechanicalLungVentilator/mac00.bum|org.eventb.core.machineFile#mac00|org.eventb.core.event#6|org.eventb.core.guard#_bu70s8mYEe6oR9IHssYpQA"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTctx07" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="mode'" org.eventb.core.type="Mode"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPctx07" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#EVTIDENTctx07" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode=VentilationOff∨mode=PSV" org.eventb.core.source="/MechanicalLungVentilator/mac00.bum|org.eventb.core.machineFile#mac00|org.eventb.core.event#0|org.eventb.core.guard#_bu8bwMmYEe6oR9IHssYpQA"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTctx08" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="mode'" org.eventb.core.type="Mode"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPctx08" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#EVTIDENTctx08" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode=VentilationOff∨mode=PCV" org.eventb.core.source="/MechanicalLungVentilator/mac00.bum|org.eventb.core.machineFile#mac00|org.eventb.core.event#1|org.eventb.core.guard#_bu8bwsmYEe6oR9IHssYpQA"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTctx09" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="mode'" org.eventb.core.type="Mode"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPctx09" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#EVTIDENTctx09" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode=PCV∨mode=PSV" org.eventb.core.source="/MechanicalLungVentilator/mac00.bum|org.eventb.core.machineFile#mac00|org.eventb.core.event#2|org.eventb.core.guard#_bu8bxMmYEe6oR9IHssYpQA"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTctx0:" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="mode'" org.eventb.core.type="Mode"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPctx0:" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#EVTIDENTctx0:" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode=PCV" org.eventb.core.source="/MechanicalLungVentilator/mac00.bum|org.eventb.core.machineFile#mac00|org.eventb.core.event#_McaisMAdEe6MNIXNEBRfjA|org.eventb.core.guard#_bu8bxsmYEe6oR9IHssYpQA"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTctx0;" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="mode'" org.eventb.core.type="Mode"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPctx0;" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#EVTIDENTctx0;" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode=PSV" org.eventb.core.source="/MechanicalLungVentilator/mac00.bum|org.eventb.core.machineFile#mac00|org.eventb.core.event#_9IU1wLFDEe6d68-PSM48Ug|org.eventb.core.guard#_bu8byMmYEe6oR9IHssYpQA"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTctx0=" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="mode'" org.eventb.core.type="Mode"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPctx0=" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#EVTIDENTctx0=" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode≠PoweredOff" org.eventb.core.source="/MechanicalLungVentilator/mac00.bum|org.eventb.core.machineFile#mac00|org.eventb.core.event#3|org.eventb.core.guard#_bu8bysmYEe6oR9IHssYpQA"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="mode≠Failsafe" org.eventb.core.source="/MechanicalLungVentilator/mac00.bum|org.eventb.core.machineFile#mac00|org.eventb.core.event#3|org.eventb.core.guard#_bu8by8mYEe6oR9IHssYpQA"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTctx0&gt;" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="mode'" org.eventb.core.type="Mode"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPctx0&gt;" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#EVTIDENTctx0&gt;" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode≠PoweredOff" org.eventb.core.source="/MechanicalLungVentilator/mac00.bum|org.eventb.core.machineFile#mac00|org.eventb.core.event#4|org.eventb.core.guard#_bu9C0cmYEe6oR9IHssYpQA"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode∈Mode" org.eventb.core.source="/MechanicalLungVentilator/mac00.bum|org.eventb.core.machineFile#mac00|org.eventb.core.invariant#_dj7K4LbVEe6m56FIz1_DKg"/>
+    </org.eventb.core.poPredicateSet>
+</org.eventb.core.poFile>
