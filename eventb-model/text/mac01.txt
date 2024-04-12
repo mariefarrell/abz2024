@@ -1,0 +1,193 @@
+machine mac01
+    refines mac00
+    sees ctx01
+
+variables
+    mode
+    apnea_lag_detected
+    is_new_patient
+    in_valve
+    out_valve
+    systemConnectedToBreathingCircuit
+    airSupplyConnected
+    powerSourceConnected
+    testPowerSwitch
+    testLeaks
+    testFF12
+    testPS_EXP
+    testOxygenSensor
+    testAlarms
+    patientConnectedToBreathingCircuit
+
+invariants
+    @typeof__apnea_lag_detected:
+        apnea_lag_detected ∈ BOOL
+    @typeof__is_new_patient:
+        is_new_patient ∈ BOOL
+    @typeof__in_valve:
+        in_valve ∈ ValveState
+    @typeof__out_valve:
+        out_valve ∈ ValveState
+    @typeof__systemConnectedToBreathingCircuit:
+        systemConnectedToBreathingCircuit ∈ BOOL
+    @typeof__patientConnectedToBreathingCircuit:
+        patientConnectedToBreathingCircuit ∈ BOOL
+    @typeof__airSupplyConnected:
+        airSupplyConnected ∈ BOOL
+    @typeof__powerSourceConnected:
+        powerSourceConnected ∈ BOOL
+    @typeof__testPowerSwitch:
+        testPowerSwitch ∈ TestResult
+    @typeof__testLeaks:
+        testLeaks ∈ TestResult
+    @typeof__testFF12:
+        testFF12 ∈ TestResult
+    @typeof__testPS_EXP:
+        testPS_EXP ∈ TestResult
+    @typeof__testOxygenSensor:
+        testOxygenSensor ∈ TestResult
+    @typeof__testAlarms:
+        testAlarms ∈ TestResult
+    @cont,1,3__valves_when_ventilation_off:
+        mode = VentilationOff ⇒ in_valve = ValveClosed ∧ out_valve = ValveOpen
+    @cont,38__valves_when_startup:
+        mode = StartUp ⇒ in_valve = ValveClosed ∧ out_valve = ValveOpen
+    @cont,1,6__valves_when_error:
+        mode = Failsafe ⇒ in_valve = ValveClosed ∧ out_valve = ValveOpen
+    @lemma__valves_when_poweredoff:
+        mode = PoweredOff ⇒ in_valve = ValveClosed ∧ out_valve = ValveOpen
+    @fun,5,3__patient_disconnected_in_StartUp_and_SelfTest:
+        (mode = StartUp ∨ mode = SelfTest) ⇒ patientConnectedToBreathingCircuit = FALSE
+    @init__patient_disconnected:
+        mode = PoweredOff ⇒ patientConnectedToBreathingCircuit = FALSE
+
+events
+    event INITIALISATION extends INITIALISATION // TODO: Link this to particular requirements. TODO: Fill in remaining variables and starting values.
+      then
+        @act1_1: is_new_patient :∈ BOOL
+        @act1_2: apnea_lag_detected ≔ FALSE
+        @act1_3: in_valve ≔ ValveClosed // in-valve closed and out-valve open is the default in failsafe mode, so it makes sense to initialise the machine in this state
+        @act1_4: out_valve ≔ ValveOpen
+        @act1_5: systemConnectedToBreathingCircuit ≔ TRUE
+        @act1_6: patientConnectedToBreathingCircuit ≔ FALSE
+        @act1_7: powerSourceConnected ≔ TRUE
+        @act1_8: airSupplyConnected ≔ TRUE
+        @act1_9: testPowerSwitch ≔ TestSkipped
+        @act1_10: testLeaks ≔ TestSkipped
+        @act1_11: testFF12 ≔ TestSkipped
+        @act1_12: testPS_EXP ≔ TestSkipped
+        @act1_13: testOxygenSensor ≔ TestSkipped
+        @act1_14: testAlarms ≔ TestSkipped
+    end
+
+    event StartUpProcedure extends PowerOn // Related to FUN.5 and CONT.1.1.
+      where
+        @grd1_1: systemConnectedToBreathingCircuit = TRUE
+        @grd1_2: airSupplyConnected = TRUE
+        @grd1_3: powerSourceConnected = TRUE
+    end
+
+    event ApneaLagDetected extends ApneaLag // Note that the user can’t select PCV mode while ventilation is on.      The only way to move to PCV mode is to select it immediately from      VentilationOff or to detect apnea for (I think) 30 seconds. I don’t      think this is ever explicitly stated anywhere.      (FUN.27.)
+      where
+        @grd1_1: apnea_lag_detected = TRUE
+    end
+
+    event SetTestResults // Does not correspond to any particular req, but may fire in SelfTest. Test results are INITIALISED as skipped. (Part of FUN.6.)
+      any
+        powerSwitch
+        leaks
+        ff12
+        ps_exp
+        oxygenSensor
+        alarms
+      where
+        @grd1_1: mode = SelfTest
+        @grd1_2: powerSwitch ∈ TestResult
+        @grd1_3: leaks ∈ TestResult
+        @grd1_4: ff12 ∈ TestResult
+        @grd1_5: ps_exp ∈ TestResult
+        @grd1_6: oxygenSensor ∈ TestResult
+        @grd1_7: alarms ∈ TestResult
+      then
+        @act1_1: testPowerSwitch ≔ powerSwitch
+        @act1_2: testLeaks ≔ leaks
+        @act1_3: testFF12 ≔ ff12
+        @act1_4: testPS_EXP ≔ ps_exp
+        @act1_5: testOxygenSensor ≔ oxygenSensor
+        @act1_6: testAlarms ≔ alarms
+    end
+
+    event SelfTestPassed extends SelfTestPassed // Part of a logical pair of events relating to SelfTest. This event defines one of the conditions for passing the tests, namely that the tests did actually pass. In this situation other conditions (such as whether the patient is new, or how long the machine was previously powered off) do not matter. (FUN.6.* and FUN.10.6.)
+      where
+        @grd1_1: testPowerSwitch = TestPassed
+        @grd1_2: testLeaks = TestPassed
+        @grd1_3: testFF12 = TestPassed
+        @grd1_4: testPS_EXP = TestPassed
+        @grd1_5: testOxygenSensor = TestPassed
+        @grd1_6: testAlarms = TestPassed
+      then
+        @act1_1: in_valve ≔ ValveClosed
+        @act1_2: out_valve ≔ ValveOpen
+    end
+
+    event SelfTestPassedOrSkipped extends SelfTestPassed // Second part of a pair of events relating to SelfTest. This event defines one of the conditions for passing the tests, namely that the tests are either passed or skipped, that the system has been off for less than 15 minutes, and the patient is not new. (FUN.10.3 and FUN.10.6.)
+      any
+        timePoweredOff
+      where
+        @grd1_1: testPowerSwitch ∈ { TestPassed, TestSkipped }
+        @grd1_2: testLeaks ∈ { TestPassed, TestSkipped }
+        @grd1_3: testFF12 ∈ { TestPassed, TestSkipped }
+        @grd1_4: testPS_EXP ∈ { TestPassed, TestSkipped }
+        @grd1_5: testOxygenSensor ∈ { TestPassed, TestSkipped }
+        @grd1_6: testAlarms ∈ { TestPassed, TestSkipped }
+        @grd1_7: timePoweredOff ∈ ℤ
+        @grd1_8: timePoweredOff ≤ 15 ∧ is_new_patient = FALSE
+      then
+        @act1_1: in_valve ≔ ValveClosed
+        @act1_2: out_valve ≔ ValveOpen
+    end
+
+    event SelfTestFailed extends Error // A refinement of ‘Error’ in which one of the self-tests fails.
+      where
+        @grd1_1: TestFailed ∈ { testPowerSwitch, testLeaks, testFF12, testPS_EXP, testOxygenSensor, testAlarms }
+      then
+        @act1_1: in_valve ≔ ValveClosed
+        @act1_2: out_valve ≔ ValveOpen
+    end
+
+    event MoveToPSV extends MoveToPSV
+    end
+
+    event PowerOff extends PowerOff
+      then
+        @act1_1: in_valve ≔ ValveClosed
+        @act1_2: out_valve ≔ ValveOpen
+        @act1_3: patientConnectedToBreathingCircuit ≔ FALSE
+    end
+
+    event ResumeVentilation extends ResumeVentilation
+      then
+        @act1_1: in_valve ≔ ValveClosed
+        @act1_2: out_valve ≔ ValveOpen
+    end
+
+    event StopVentilation extends StopVentilation
+      then
+        @act1_1: in_valve ≔ ValveClosed
+        @act1_2: out_valve ≔ ValveOpen
+    end
+
+    event StartPCV extends StartPCV
+      where
+        @grd1_1: mode ≠ PSV
+    end
+
+    event StartPSV extends StartPSV
+      where
+        @grd1_1: mode ≠ PSV
+    end
+
+    event StartUpEnded extends StartUpEnded
+    end
+
+end

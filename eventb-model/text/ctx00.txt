@@ -1,0 +1,26 @@
+context ctx00 // This context formalises FUN.4 (= CONT.1) and the state machine in §4 by construction.
+
+sets
+    Mode
+
+constants
+    Failsafe
+    PoweredOff
+    VentilationOff
+    PCV
+    PSV
+    StartUp
+    SelfTest
+
+axioms
+    @axm0_1:
+        partition(Mode,
+          { StartUp },
+          { SelfTest },
+          { VentilationOff },
+          { PCV },
+          { PSV },
+          { Failsafe },
+          { PoweredOff })
+
+end

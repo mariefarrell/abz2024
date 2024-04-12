@@ -1,0 +1,21 @@
+context ctx01
+    extends ctx00
+
+sets
+    ValveState
+    TestResult
+
+constants
+    ValveOpen
+    ValveClosed
+    TestPassed
+    TestFailed
+    TestSkipped
+
+axioms
+    @axm1_1:
+        partition(ValveState, { ValveOpen }, { ValveClosed })
+    @axm1_2:
+        partition(TestResult, { TestPassed }, { TestFailed }, { TestSkipped })
+
+end

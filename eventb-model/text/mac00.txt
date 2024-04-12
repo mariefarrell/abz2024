@@ -1,0 +1,95 @@
+machine mac00 // This machine encodes the basic controller transition    diagram, Figure 4.1, on pg. 35 of the MLV document.    It has only one state variable: the mode.    (FUN.4.)
+    sees ctx00
+
+variables
+    mode
+
+invariants
+    @typeof__mode:
+        mode ∈ Mode
+
+events
+    event INITIALISATION
+      then
+        @act0_1: mode ≔ PoweredOff
+    end
+
+    event PowerOn
+      where
+        @grd0_1: mode = PoweredOff
+      then
+        @act0_1: mode ≔ StartUp
+    end
+
+    event StartUpEnded
+      where
+        @grd0_1: mode = StartUp
+      then
+        @act0_1: mode ≔ SelfTest
+    end
+
+    event ResumeVentilation // Allows skipping the self-test for the same patient      in case the unit had to be powered down. (See FUN.10      rationale.)
+      where
+        @grd0_1: mode = SelfTest
+      then
+        @act0_1: mode ≔ VentilationOff
+    end
+
+    event SelfTestPassed // VentilationOff is another name for Standby. A refinement      of this event specifies the conditions under which the tests      pass.
+      where
+        @grd0_1: mode = SelfTest
+      then
+        @act0_1: mode ≔ VentilationOff
+    end
+
+    event StartPCV
+      where
+        @grd0_1: mode = VentilationOff ∨ mode = PSV
+      then
+        @act0_1: mode ≔ PCV
+    end
+
+    event StartPSV
+      where
+        @grd0_1: mode = VentilationOff ∨ mode = PCV
+      then
+        @act0_1: mode ≔ PSV
+    end
+
+    event StopVentilation
+      where
+        @grd0_1: mode = PCV ∨ mode = PSV
+      then
+        @act0_1: mode ≔ VentilationOff
+    end
+
+    event MoveToPSV
+      where
+        @grd0_1: mode = PCV
+      then
+        @act0_1: mode ≔ PSV
+    end
+
+    event ApneaLag
+      where
+        @grd0_1: mode = PSV
+      then
+        @act0_1: mode ≔ PCV
+    end
+
+    event Error // In Failsafe, nothing can happen except PowerOff.      No particular invariant or guard supports this but      the machine’s design implies it.      (FUN.5.2, last part only: ‘any other operations shall      not be allowed’.)
+      where
+        @grd0_1: mode ≠ PoweredOff
+        @grd0_2: mode ≠ Failsafe
+      then
+        @act0_1: mode ≔ Failsafe
+    end
+
+    event PowerOff // The machine can be shut off at any time by pressing the      power button, according to Figure 4.1.
+      where
+        @grd0_1: mode ≠ PoweredOff
+      then
+        @act0_1: mode ≔ PoweredOff
+    end
+
+end

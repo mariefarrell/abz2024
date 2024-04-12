@@ -7,20 +7,9 @@
         <org.eventb.core.poIdentifier name="PCV" org.eventb.core.type="Mode"/>
         <org.eventb.core.poIdentifier name="SelfTest" org.eventb.core.type="Mode"/>
         <org.eventb.core.poIdentifier name="PSV" org.eventb.core.type="Mode"/>
-        <org.eventb.core.poIdentifier name="ModeDiGraph" org.eventb.core.type="ℙ(Mode×Mode)"/>
         <org.eventb.core.poIdentifier name="Failsafe" org.eventb.core.type="Mode"/>
         <org.eventb.core.poIdentifier name="PoweredOff" org.eventb.core.type="Mode"/>
-        <org.eventb.core.poPredicate name="VentilationOfg" org.eventb.core.predicate="StartUp∈Mode" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#0"/>
-        <org.eventb.core.poPredicate name="VentilationOfh" org.eventb.core.predicate="SelfTest∈Mode" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#1"/>
-        <org.eventb.core.poPredicate name="VentilationOfi" org.eventb.core.predicate="VentilationOff∈Mode" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#2"/>
-        <org.eventb.core.poPredicate name="VentilationOfj" org.eventb.core.predicate="PCV∈Mode" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#3"/>
-        <org.eventb.core.poPredicate name="VentilationOfk" org.eventb.core.predicate="PSV∈Mode" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#4"/>
-        <org.eventb.core.poPredicate name="VentilationOfl" org.eventb.core.predicate="Failsafe∈Mode" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#5"/>
-        <org.eventb.core.poPredicate name="VentilationOfm" org.eventb.core.predicate="PoweredOff∈Mode" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#6"/>
-        <org.eventb.core.poPredicate name="VentilationOfn" org.eventb.core.predicate="partition(Mode,{StartUp},{SelfTest},{VentilationOff},{PCV},{PSV},{Failsafe},{PoweredOff})" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#."/>
-        <org.eventb.core.poPredicate name="VentilationOfo" org.eventb.core.predicate="finite(Mode)" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#_yV1GwLn6Ee6oroLvWPSQOw"/>
-        <org.eventb.core.poPredicate name="VentilationOfp" org.eventb.core.predicate="partition(ModeDiGraph,{PoweredOff ↦ StartUp},{StartUp ↦ SelfTest},{SelfTest ↦ VentilationOff},{VentilationOff ↦ PSV},{VentilationOff ↦ PCV},{PSV ↦ PCV},{PCV ↦ PSV},{PSV ↦ VentilationOff},{PCV ↦ VentilationOff},{x⦂Mode,y⦂Mode·y=Failsafe∧x≠PoweredOff∧x≠Failsafe ∣ x ↦ y},{x⦂Mode,y⦂Mode·y=PoweredOff∧x≠PoweredOff ∣ x ↦ y})" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#_bnMBEM_yEe6Jw8jFMIYMcg"/>
-        <org.eventb.core.poPredicate name="VentilationOfq" org.eventb.core.predicate="ModeDiGraph∈Mode  Mode" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#_EviFIM_4Ee6Jw8jFMIYMcg"/>
+        <org.eventb.core.poPredicate name="VentilationOfg" org.eventb.core.predicate="partition(Mode,{StartUp},{SelfTest},{VentilationOff},{PCV},{PSV},{Failsafe},{PoweredOff})" org.eventb.core.source="/MechanicalLungVentilator/ctx00.buc|org.eventb.core.contextFile#ctx00|org.eventb.core.axiom#."/>
     </org.eventb.core.poPredicateSet>
     <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.parentSet="/MechanicalLungVentilator/mac00.bpo|org.eventb.core.poFile#mac00|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="0">
         <org.eventb.core.poIdentifier name="mode" org.eventb.core.type="Mode"/>
